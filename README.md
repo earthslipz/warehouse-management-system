@@ -13,6 +13,9 @@ for more detailed information: https://shorturl.at/oaZd5
 
 **to run project**:  
    ```bash
-   python -m src.app
+   Xvfb :99 -screen 0 1024x768x24 &
+export DISPLAY=:99
+python -m src.app
+
 
 ```
