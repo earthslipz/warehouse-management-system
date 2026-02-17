@@ -5,23 +5,42 @@ import sys
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from .event_bus import EventBus
-from .agents.inventory_tracker import InventoryTracker
-from .agents.order_processor import OrderProcessor
-from .agents.agv_controller import AGVController
-from .agents.rfid_sensor import RFIDSensor
-from .agents.alert_system import AlertSystem
-from .agents.general_ledger import GeneralLedgerAgent
-from .agents.sales_manager import SalesManager
-from .agents.purchase_manager import PurchaseManager
-from .agents.accounting_managers import (
-    TaxManager, BankingManager, AssetManager, BudgetManager
-)
-
-from .events import order_events as ord_ev
-from .events import inventory_events as inv_ev
-from .events import alert_events as al_ev
-from .models.accounting import VATType
+# Handle both relative and absolute imports
+try:
+    from .event_bus import EventBus
+    from .agents.inventory_tracker import InventoryTracker
+    from .agents.order_processor import OrderProcessor
+    from .agents.agv_controller import AGVController
+    from .agents.rfid_sensor import RFIDSensor
+    from .agents.alert_system import AlertSystem
+    from .agents.general_ledger import GeneralLedgerAgent
+    from .agents.sales_manager import SalesManager
+    from .agents.purchase_manager import PurchaseManager
+    from .agents.accounting_managers import (
+        TaxManager, BankingManager, AssetManager, BudgetManager
+    )
+    from .events import order_events as ord_ev
+    from .events import inventory_events as inv_ev
+    from .events import alert_events as al_ev
+    from .models.accounting import VATType
+except ImportError:
+    # Fallback for direct script execution
+    from src.event_bus import EventBus
+    from src.agents.inventory_tracker import InventoryTracker
+    from src.agents.order_processor import OrderProcessor
+    from src.agents.agv_controller import AGVController
+    from src.agents.rfid_sensor import RFIDSensor
+    from src.agents.alert_system import AlertSystem
+    from src.agents.general_ledger import GeneralLedgerAgent
+    from src.agents.sales_manager import SalesManager
+    from src.agents.purchase_manager import PurchaseManager
+    from src.agents.accounting_managers import (
+        TaxManager, BankingManager, AssetManager, BudgetManager
+    )
+    from src.events import order_events as ord_ev
+    from src.events import inventory_events as inv_ev
+    from src.events import alert_events as al_ev
+    from src.models.accounting import VATType
 
 
 class ThaiAccountingApp(tk.Tk):
